@@ -18,6 +18,7 @@
     window.$docsify = {
       //切换页面后是否自动跳转到页面顶部
       auto2top: true,
+      basePath: '/docs/'
       //启用封面页。开启后是加载 _coverpage.md 文件，也可以自定义文件名。
       coverpage: true,
       //执行文档里的 script 标签里的脚本，只执行第一个 script (demo)。 如果 Vue 存在，则自动开启。
@@ -55,8 +56,13 @@
       //目录名称
       name: '购物清单参考指南',
     }
+
+
   </script>
+
+
   <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
+  <script src="//unpkg.com/docsify"></script>
   <script src="//unpkg.com/docsify/lib/plugins/search.js"></script>
   <script src="//unpkg.com/prismjs/components/prism-bash.min.js"></script>
   <script src="//unpkg.com/prismjs/components/prism-markdown.min.js"></script>
