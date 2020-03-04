@@ -18,7 +18,6 @@
     window.$docsify = {
       //切换页面后是否自动跳转到页面顶部
       auto2top: true,
-      basePath: '/docs/'
       //启用封面页。开启后是加载 _coverpage.md 文件，也可以自定义文件名。
       coverpage: true,
       //执行文档里的 script 标签里的脚本，只执行第一个 script (demo)。 如果 Vue 存在，则自动开启。
@@ -47,19 +46,29 @@
       //我们可以通过 {docsify-updated} 变量显示文档更新日期. 
       formatUpdated: '{MM}/{DD} {HH}:{mm}',
       //目录名称
-      pagination: {
-        previousText: '上一章节',
-        nextText: '下一章节',
-        crossChapter: true,
-        crossChapterText: true,
-      }
-      //目录名称
-      name: '购物清单参考指南',
+      name: '购物清单',
+      //头标角标
+      plugins: [
+        function (hook, vm) {
+          hook.beforeEach(function (html) {
+            if (/githubusercontent\.com/.test(vm.route.file)) {
+              url = vm.route.file
+                .replace('raw.githubusercontent.com', 'github.com')
+                .replace(/\/master/, '/blob/master')
+            } else {
+              url = 'https://github.com/MKDJOJO/doc-n1' + vm.route.file
+            }
+            var editHtml = '[:memo: 编辑文档](' + url + ')\n'
+
+            return editHtml
+              + html
+              + '\n\n----\n\n'
+              + '<a href="http://CCTV.com" target="_blank" style="color: inherit; font-weight: normal; text-decoration: none;">荣幸引用 docsify</a>'
+          })
+        },
+      ]
     }
-
-
   </script>
-
 
   <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
   <script src="//unpkg.com/docsify"></script>
